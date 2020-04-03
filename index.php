@@ -27,7 +27,7 @@ Port: 3306 -->
     
     while ($row = $result->fetch_object()) {
         echo "<tr>";
-        echo "<td><b>" . smile($row->text) . "</b><i>$row->name</i><br></td>";
+        echo "<td><b>" . smile($row->text). "</b> <i>$row->name</i><br></td>";
         echo "</tr>";
     }
     $result->free();
