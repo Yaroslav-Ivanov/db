@@ -26,7 +26,7 @@
     $result = $mysqli->query('SELECT * FROM `tabl`');
 
     while ($row = $result->fetch_object()) {
-        echo "<b>($row->text)</b> <i>$row->name</i></br>";
+        echo "<b>". smile($row->text)."</b> <i>$row->name</i></br>";
     }   //вытягивает строки в виде объекта
 
     
