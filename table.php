@@ -23,7 +23,6 @@
     include('conect.php');
     include('smile.php');
   
-
     $result = $mysqli->query('SELECT * FROM `tabl`');
 
     while ($row = $result->fetch_object()) {
