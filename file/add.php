@@ -1,5 +1,5 @@
 <?
-include('conect.php');
+include('file\conect.php');
 
 if (!empty($_POST['text']) && !empty($_POST['name'])) {
     $mysqli->query(

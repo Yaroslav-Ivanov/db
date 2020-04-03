@@ -20,8 +20,8 @@
 
 // Port: 3306
 
-    include('conect.php');
-    include('smile.php');
+    include('file\conect.php');
+    include('file\smile.php');
   
     $result = $mysqli->query('SELECT * FROM `tabl`');
 
@@ -34,7 +34,7 @@
     ?>
 
 
-    <form action="add.php" method="post">
+    <form action="file\add.php" method="post">
         <textarea name="text" cols="30" rows="10"></textarea><br>
         <input type="text" name="name"><br>
         <input type="submit" value="Ok">
