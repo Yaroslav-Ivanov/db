@@ -2,7 +2,7 @@
 
 $mysqli = new mysqli(
     'remotemysql.com',
-    'TkuGE0xpdU',
-    'xc1L3xMG1m',
-    'TkuGE0xpdU' //database
+    'MOI5B2CoWP',
+    'C32rVPIxRA',
+    'MOI5B2CoWP' //database
 );

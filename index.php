@@ -8,37 +8,36 @@
 </head>
 
 <body>
+<!-- Username: MOI5B2CoWP
+
+Database name: MOI5B2CoWP
+
+Password: C32rVPIxRA
+
+Server: remotemysql.com
+
+Port: 3306 -->
+
+
     <?php
-
-// Username: TkuGE0xpdU
-
-// Database name: TkuGE0xpdU
-
-// Password: xc1L3xMG1m
-
-// Server: remotemysql.com
-
-// Port: 3306
-
     include('conect.php');
     include('smile.php');
-  
-    $result = $mysqli->query('SELECT * FROM `tabl`');
 
-    while ($row = $result->fetch_object()) {
-        echo "<b>". smile($row->text)."</b> <i>$row->name</i></br>";
-    }   //вытягивает строки в виде объекта
-
+    $result = $mysqli->query('SELECT * FROM `table`');
     
-     
+    while ($row = $result->fetch_object()) {
+        echo "<tr>";
+        echo "<td><b>" . smile($row->text) . "</b><i>$row->name</i><br></td>";
+        echo "</tr>";
+    }
+    $result->free();
+    
     $mysqli->close();
     ?>
-
-
-    <form action="add.php" method="post">
-        <textarea name="text" cols="30" rows="10"></textarea><br>
+    <form action="add.php" method="POST">
+        <textarea name="text" cols="30" rows="10"></textarea> <br>
         <input type="text" name="name"><br>
-        <input type="submit" value="Ok">
+        <input type="submit" value="ok">
     </form>
 </body>
 
