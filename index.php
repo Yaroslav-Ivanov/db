@@ -20,11 +20,10 @@ Port: 3306 -->
 
 
     <?php
-    include('conect.php');
     include('config.php');
+    include('conect.php');
     include('smile.php');
-
-    $result = $mysqli->query('SELECT * FROM `table` LIMIT $startrow, $pagesize');
+    
 
     $result_count = $mysqli->query('SELECT count(*) FROM `table`');
     $count = $result_count->fetch_array(MYSQLI_NUM)[0];
@@ -44,7 +43,11 @@ Port: 3306 -->
         $pageination .= "<a href='?page=$i'>$i</a>";
     }
     $pageination = "</div>";
+
+    $result = $mysqli->query('SELECT * FROM `table` LIMIT $startrow, $pagesize');
+
     echo $pageination;
+
     while ($row = $result->fetch_object()) {
         echo "<tr>";
         echo "<td><b>" . smile($row->text) . "</b> <i>$row->name</i><br></td>";
