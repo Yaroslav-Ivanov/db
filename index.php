@@ -24,7 +24,7 @@ Port: 3306 -->
     include('config.php');
     include('smile.php');
 
-    $result = $mysqli->query('SELECT * FROM `table` LIMIT');
+    $result = $mysqli->query('SELECT * FROM `table` LIMIT $startrow, $pagesize');
 
     $result_count = $mysqli->query('SELECT count(*) FROM `table`');
     $count = $result_count->fetch_array(MYSQLI_NUM)[0];
@@ -38,14 +38,13 @@ Port: 3306 -->
 
     $startrow = ($currientpage - 1) * $pagesize;
 
-    $pageination = "";
+    $pageination = "<div class='padeination'>";
 
     for ($i = 1; $i <= $pagecount; $i++) {
         $pageination .= "<a href='?page=$i'>$i</a>";
     }
-
+    $pageination = "</div>";
     echo $pageination;
-
     while ($row = $result->fetch_object()) {
         echo "<tr>";
         echo "<td><b>" . smile($row->text) . "</b> <i>$row->name</i><br></td>";
