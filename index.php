@@ -24,14 +24,27 @@ Port: 3306 -->
     include('config.php');
     include('smile.php');
 
-    $result = $mysqli->query('SELECT * FROM `table`');
+    $result = $mysqli->query('SELECT * FROM `table` LIMIT');
 
-    $result_count = $mysqli->query('SELECT count(*) FROM `table`'); 
+    $result_count = $mysqli->query('SELECT count(*) FROM `table`');
     $count = $result_count->fetch_array(MYSQLI_NUM)[0];
-    echo "Количество строк: <b>$count</b><br>";
+    // echo "Количество строк: <b>$count</b><br>";
+    $result_count->free();
+
 
     $pagecount = ceil($count / $pagesize);
-    
+
+    $currientpage = $_GET['page'] ?? 1;
+
+    $startrow = ($currientpage - 1) * $pagesize;
+
+    $pageination = "";
+
+    for ($i = 1; $i <= $pagecount; $i++) {
+        $pageination .= "<a href='?page=$i'>$i</a>";
+    }
+
+    echo $pageination;
 
     while ($row = $result->fetch_object()) {
         echo "<tr>";
