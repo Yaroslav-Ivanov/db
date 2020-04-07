@@ -1,0 +1,3 @@
+<?php
+
+$pagesize = 3;

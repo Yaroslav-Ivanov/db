@@ -21,6 +21,7 @@ Port: 3306 -->
 
     <?php
     include('conect.php');
+    include('config.php');
     include('smile.php');
 
     $result = $mysqli->query('SELECT * FROM `table`');
@@ -28,6 +29,8 @@ Port: 3306 -->
     $result_count = $mysqli->query('SELECT count(*) FROM `table`'); 
     $count = $result_count->fetch_array(MYSQLI_NUM)[0];
     echo "Количество строк: <b>$count</b><br>";
+
+    $pagecount = ceil($count / $pagesize);
     
 
     while ($row = $result->fetch_object()) {
