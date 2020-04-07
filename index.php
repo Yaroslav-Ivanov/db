@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .pageination a {
+        color: green;
+    }
+
+    .selectedpage {
+        color: blue !important;
+        font-weight: bolder;
+    }
+</style>
 
 <body>
     <!-- Username: MOI5B2CoWP
@@ -24,6 +37,11 @@ Port: 3306 -->
     include('conect.php');
     include('smile.php');
 
+    
+    if (isset($_SESSION['bantime']) && ($_SESSION['bantime']) > time()) {
+        echo "Вы забанены на : " .($_SESSION['bantime'] - time())." с<br>"; 
+    }
+
 
     $result_count = $mysqli->query('SELECT count(*) FROM `table`'); //считаем количество строк в таблице
     $count = $result_count->fetch_array(MYSQLI_NUM)[0];
@@ -40,7 +58,13 @@ Port: 3306 -->
     $pageination = "<div class='pageination'>";
 
     for ($i = 1; $i <= $pagecount; $i++) {
-        $pageination .= "<a href='?page=$i'>$i</a>";
+        // if ($currientpage == $i) {
+        //     $str = " class='selectedpage'";
+        // } else {
+        //     $str = "";
+        // }
+        $str = ($currientpage == $i) ? " class='selectedpage'" : "";
+        $pageination .= "<a href='?page=$i'$str>$i</a>";
     }
     $pageination .= "</div>";
 
