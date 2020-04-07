@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<!-- Username: MOI5B2CoWP
+    <!-- Username: MOI5B2CoWP
 
 Database name: MOI5B2CoWP
 
@@ -24,14 +24,19 @@ Port: 3306 -->
     include('smile.php');
 
     $result = $mysqli->query('SELECT * FROM `table`');
+
+    $result_count = $mysqli->query('SELECT count(*) FROM `table`'); 
+    $count = $result_count->fetch_array(MYSQLI_NUM)[0];
+    echo "Количество строк: <b>$count</b><br>";
     
+
     while ($row = $result->fetch_object()) {
         echo "<tr>";
-        echo "<td><b>" . smile($row->text). "</b> <i>$row->name</i><br></td>";
+        echo "<td><b>" . smile($row->text) . "</b> <i>$row->name</i><br></td>";
         echo "</tr>";
     }
     $result->free();
-    
+
     $mysqli->close();
     ?>
     <form action="add.php" method="POST">
